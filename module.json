@@ -1,0 +1,49 @@
+{
+  "id": "sfrpg-item-sheets",
+  "title": "SFRPG Improved Item Sheets",
+  "version": "0.1",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "sfrpg",
+        "type": "system",
+        "compatibility": {
+          "minimum": "0.25"
+        }
+      }
+    ]
+  },
+  "description": "Designate items as modifications that can be installed into other items.",
+  "authors": [
+    {
+      "name": "Ian Bennett",
+      "discord": "spacemanian",
+      "url": "github.com/ian612",
+      "flags": {}
+    }
+  ],
+  "manifest": "updatedByRelease",
+  "url": "updatedByRelease",
+  "download": "updatedByRelease",
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "dist/lang/en.json",
+      "flags": {}
+    }
+  ],
+  "license": "LICENSE",
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "hbs", "json"],
+      "paths": ["lang", "styles", "templates"]
+    }
+  },
+  "esmodules": ["dist/init.mjs"],
+  "styles": ["dist/main.css"]
+}

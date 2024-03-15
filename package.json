@@ -1,0 +1,35 @@
+{
+  "name": "sfrpg-item-sheets",
+  "version": "0.1.0",
+  "description": "A foundry module to improve Starfinder Item Sheets",
+  "main": "dist/sfrpg-item-sheets.js",
+  "scripts": {
+    "build": "node build/build.mjs",
+    "clean": "node build/clean.mjs",
+    "less": "less src/less/main.less dist/main.css",
+    "unpack": "node build/unpack.mjs",
+    "pack": "node build/pack.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ian612/sfrpg-item-sheets.git"
+  },
+  "keywords": [
+    "Foundry",
+    "VTT",
+    "FoundryVTT",
+    "Module",
+    "Starfinder",
+    "SFRPG"
+  ],
+  "author": "Ian Bennett",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ian612/sfrpg-item-sheets/issues"
+  },
+  "homepage": "https://github.com/ian612/sfrpg-item-sheets#readme",
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^1.0.2",
+    "less": "^4.2.0"
+  }
+}
