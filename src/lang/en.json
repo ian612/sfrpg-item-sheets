@@ -122,6 +122,7 @@
                     "SmallArm": "Small Arm"
                 }
             }
-        }
+        },
+        "SheetLabel": "Enhanced Item Sheet"
     }
 }
