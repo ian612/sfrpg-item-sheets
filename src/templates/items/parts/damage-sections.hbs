@@ -1,4 +1,4 @@
-<div class="form-group" {{ createTippy title="SFRPG.Damage.Types.PrimaryDamageGroup" subtitle="SFRPG.Damage.Types.PrimaryDamageGroupTooltip" }}>
+<div class="form-group" {{ createTippy title="SFRPG.Damage.Types.PrimaryDamageGroup" subtitle="SFRPGItemSheets.Damage.Types.PrimaryDamageGroupTooltip" }}>
     <label>Primary Damage Group</label>
     <input type="number" name="system.damage.primaryGroup" value="{{itemData.damage.primaryGroup}}" data-dtype="Number"/>
 </div>
@@ -37,7 +37,7 @@
                     <input type="number" name="system.damage.parts.{{i}}.group" value="{{lookup this "group"}}" data-tooltip="
                     <strong>{{ localize 'SFRPG.Damage.Types.DamageGroup' group=''}}</strong>
                     <br>
-                    <p>{{ localize 'SFRPG.Damage.Types.DamageGroupTooltip' group=''}}</p>"/>
+                    <p>{{ localize 'SFRPGItemSheets.Damage.Types.DamageGroupTooltip' group=''}}</p>"/>
                 </div>
             </div>
 

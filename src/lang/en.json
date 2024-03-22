@@ -114,14 +114,7 @@
                 "Action": "Augmentation Action",
                 "Usage": "Augmentation Usage"
             },
-            "RangeInformation": "Range Information",
-            "WeaponAccessory": {
-                "SupportedType": {
-                    "MeleeWeaponSA": "Melee weapon & Small Arm",
-                    "RailedWeaponSA": "Railed weapon & Small Arm",
-                    "SmallArm": "Small Arm"
-                }
-            }
+            "RangeInformation": "Range Information"
         },
         "SheetLabel": "Enhanced Item Sheet"
     }

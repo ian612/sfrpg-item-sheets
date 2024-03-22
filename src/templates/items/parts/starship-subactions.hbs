@@ -1,8 +1,8 @@
 
 <div class="bubble">
     <h3 class="bubble-header">
-        {{ localize "SFRPG.ItemSheet.StarshipAction.SkillFormulaOrSubactions" }}
-        <a class="subaction-control add-subaction" data-tooltip="{{ localize "SFRPG.ItemSheet.StarshipAction.AddSubactionTooltip" }}"><i class="fas fa-plus"></i></a>
+        {{ localize "SFRPGItemSheets.ItemSheet.StarshipAction.SkillFormulaOrSubactions" }}
+        <a class="subaction-control add-subaction" data-tooltip="{{ localize "SFRPGItemSheets.ItemSheet.StarshipAction.AddSubactionTooltip" }}"><i class="fas fa-plus"></i></a>
     </h3>
 
     <ol class="subaction-parts bubble-info">
@@ -10,14 +10,14 @@
 
         <li class="bubble subaction-part" data-subaction-part="{{id}}">
             <h3 class="bubble-header">
-                {{#unless (lookup this "name") }}{{ localize "SFRPG.ItemSheet.StarshipAction.SubactionPart" section=id}}{{else}}{{lookup this "name"}}{{/unless}}
-                <a class="subaction-control delete-subaction" data-tooltip="{{ localize "SFRPG.ItemSheet.StarshipAction.DeleteSubactionTooltip" }}"><i class="fas fa-minus"></i></a>
+                {{#unless (lookup this "name") }}{{ localize "SFRPGItemSheets.ItemSheet.StarshipAction.SubactionPart" section=id}}{{else}}{{lookup this "name"}}{{/unless}}
+                <a class="subaction-control delete-subaction" data-tooltip="{{ localize "SFRPGItemSheets.ItemSheet.StarshipAction.DeleteSubactionTooltip" }}"><i class="fas fa-minus"></i></a>
             </h3>
 
             <div class="bubble-info">
                 {{!-- Action Skill --}}
                 <div class="form-group">
-                    <label>{{ localize "SFRPG.ItemSheet.StarshipAction.SkillOrSubaction" }}</label>
+                    <label>{{ localize "SFRPGItemSheets.ItemSheet.StarshipAction.SkillOrSubaction" }}</label>
                     <div class="form-fields">
                         <input type="text" name="system.formula.{{id}}.name" value="{{lookup this "name"}}" data-dtype="String"/>
                     </div>
@@ -25,7 +25,7 @@
 
                 {{!-- Skill Check Formula --}}
                 <div class="form-group">
-                    <label>{{ localize "SFRPG.ItemSheet.StarshipAction.CheckFormula" }}</label>
+                    <label>{{ localize "SFRPGItemSheets.ItemSheet.StarshipAction.CheckFormula" }}</label>
                     <div class="form-fields">
                         <input type="text" name="system.formula.{{id}}.formula" value="{{lookup this "formula"}}" data-dtype="String"/>
                     </div>
@@ -33,11 +33,11 @@
 
                 {{!-- Resolve & DC Information --}}
                 <div class="form-group">
-                    <label>{{ localize "SFRPG.ItemSheet.StarshipAction.TargetDC" }}</label>
+                    <label>{{ localize "SFRPGItemSheets.ItemSheet.StarshipAction.TargetDC" }}</label>
                     <div class="form-fields">
                         <input type="text" name="system.formula.{{id}}.dc.value" value="{{lookup dc "value"}}" data-dtype="String"/>
                         <label class="checkbox">
-                            <input type="checkbox" name="system.formula.{{id}}.dc.resolve" {{checked dc.resolve}}/> {{ localize "SFRPG.ItemSheet.StarshipAction.UsesResolve" }}
+                            <input type="checkbox" name="system.formula.{{id}}.dc.resolve" {{checked dc.resolve}}/> {{ localize "SFRPGItemSheets.ItemSheet.StarshipAction.UsesResolve" }}
                         </label>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 {{!-- Subaction Effects --}}
                 {{#with (lookup ../editorInfo id) as |editorInfo|}}
                     <div class="bubble">
-                        <h3 class="bubble-header">{{ localize "SFRPG.ItemSheet.StarshipAction.NormalEffect" }}</h3>
+                        <h3 class="bubble-header">{{ localize "SFRPGItemSheets.ItemSheet.StarshipAction.NormalEffect" }}</h3>
 
                         <div class="bubble-info bubble-editor">
                             {{editor
@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="bubble">
-                        <h3 class="bubble-header">{{ localize "SFRPG.ItemSheet.StarshipAction.CriticalEffect" }}</h3>
+                        <h3 class="bubble-header">{{ localize "SFRPGItemSheets.ItemSheet.StarshipAction.CriticalEffect" }}</h3>
 
                         <div class="bubble-info bubble-editor">
                             {{editor

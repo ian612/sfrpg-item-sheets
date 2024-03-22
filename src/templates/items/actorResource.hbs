@@ -21,8 +21,8 @@
 
             {{!-- Details Tab Navigation --}}
             <nav class="sheet-subnavigation subtabs" data-group="subdetails">
-                <a class="item active" data-tab="properties">{{ localize "SFRPG.ItemSheet.Details.Tab.Properties" }}</a>
-                {{#if itemData.combatTracker.show}}<a class="item" data-tab="tracker">{{ localize "SFRPG.ItemSheet.ActorResource.CombatTracker" }}</a>{{/if}}
+                <a class="item active" data-tab="properties">{{ localize "SFRPGItemSheets.ItemSheet.Details.Tab.Properties" }}</a>
+                {{#if itemData.combatTracker.show}}<a class="item" data-tab="tracker">{{ localize "SFRPGItemSheets.ItemSheet.ActorResource.CombatTracker" }}</a>{{/if}}
             </nav>
 
             {{!-- Details Section --}}
@@ -92,8 +92,8 @@
                             {{/if}}
 
                             {{!-- Base Value --}}
-                            <div class="form-group" {{createTippy title="SFRPG.ItemSheet.ActorResource.Base" subtitle="SFRPG.ItemSheet.ActorResource.BaseTooltip"}}>
-                                <label>{{ localize "SFRPG.ItemSheet.ActorResource.Base" }}</label>
+                            <div class="form-group" {{createTippy title="SFRPGItemSheets.ItemSheet.ActorResource.Base" subtitle="SFRPGItemSheets.ItemSheet.ActorResource.BaseTooltip"}}>
+                                <label>{{ localize "SFRPGItemSheets.ItemSheet.ActorResource.Base" }}</label>
                                 <div class="form-fields">
                                     <input type="text" name="system.base" value="{{itemData.base}}" data-dtype="Number" placeholder="" />
                                 </div>
@@ -110,8 +110,8 @@
 
                             {{!-- Value Range --}}
                             <div class="form-group">
-                                <label>{{ localize "SFRPG.ItemSheet.ActorResource.Range" }}</label>
-                                <div class="form-fields" {{createTippy title="SFRPG.ItemSheet.ActorResource.Range" subtitle="SFRPG.ItemSheet.ActorResource.RangeTooltip"}}>
+                                <label>{{ localize "SFRPGItemSheets.ItemSheet.ActorResource.Range" }}</label>
+                                <div class="form-fields" {{createTippy title="SFRPGItemSheets.ItemSheet.ActorResource.Range" subtitle="SFRPG.ItemSheet.ActorResource.RangeTooltip"}}>
                                     {{#if (eq itemData.stage "late")}}
                                         {{#if this.range.showMinTotal}}<p class="calculated-total"><strong>{{itemData.range.totalMin}}</strong></p>{{/if}}
                                         <input type="text" name="system.range.min" value="{{itemData.range.min}}" data-dtype="String" />
@@ -127,8 +127,8 @@
                             </div>
 
                             {{!-- Range Mode --}}
-                            <div class="form-group" {{createTippy title="SFRPG.ItemSheet.ActorResource.RangeMode" subtitle="SFRPG.ItemSheet.ActorResource.RangeModeTooltip"}}>
-                                <label>{{ localize "SFRPG.ItemSheet.ActorResource.RangeMode" }}</label>
+                            <div class="form-group" {{createTippy title="SFRPGItemSheets.ItemSheet.ActorResource.RangeMode" subtitle="SFRPG.ItemSheet.ActorResource.RangeModeTooltip"}}>
+                                <label>{{ localize "SFRPGItemSheets.ItemSheet.ActorResource.RangeMode" }}</label>
                                 <div class="form-fields">
                                     <select name="system.range.mode">
                                         {{#select itemData.range.mode}}
@@ -157,7 +157,7 @@
 
                     {{!-- Attribute Usage --}}
                     <div class="bubble">
-                        <h3 class="bubble-header">{{localize "SFRPG.ItemSheet.ActorResource.Usage"}}</h3>
+                        <h3 class="bubble-header">{{localize "SFRPGItemSheets.ItemSheet.ActorResource.Usage"}}</h3>
 
                         <div class="bubble-info">
 
@@ -167,13 +167,13 @@
                                 <label class="error">{{ localize "SFRPG.ItemSheet.ActorResource.ErrorMissingFields" }}</label>
                             {{else}}
                                 <div class="form-group">
-                                    <label>{{ localize "SFRPG.ItemSheet.ActorResource.UsageBaseValue" }}</label>
+                                    <label>{{ localize "SFRPGItemSheets.ItemSheet.ActorResource.UsageBaseValue" }}</label>
                                     <div class="form-fields">
                                         <label style="text-align: left; user-select: text; cursor: text;">@resources.{{itemData.type}}.{{itemData.subType}}.base</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ localize "SFRPG.ItemSheet.ActorResource.UsageComputedValue" }}</label>
+                                    <label>{{ localize "SFRPGItemSheets.ItemSheet.ActorResource.UsageComputedValue" }}</label>
                                     <div class="form-fields">
                                         <label style="text-align: left; user-select: text; cursor: text;">@resources.{{itemData.type}}.{{itemData.subType}}.value</label>
                                     </div>
@@ -191,7 +191,7 @@
 
                     {{!-- Combat Tracker Settings --}}
                     <div class="bubble">
-                        <h3 class="bubble-header">{{localize "SFRPG.ItemSheet.ActorResource.CombatTrackerSettings"}}</h3>
+                        <h3 class="bubble-header">{{localize "SFRPGItemSheets.ItemSheet.ActorResource.CombatTrackerSettings"}}</h3>
 
                         <div class="bubble-info">
 
@@ -231,7 +231,7 @@
                                 <li class="visualization-part" data-index="{{i}}">
                                     <div class="bubble">
                                         <h4 class="bubble-header">
-                                            {{localize "SFRPG.ItemSheet.ActorResource.VisualizationsPart"}} {{i}}
+                                            {{localize "SFRPGItemSheets.ItemSheet.ActorResource.VisualizationsPart"}} {{i}}
                                             <a class="visualization-control delete-visualization bubble-icon"><i class="fas fa-minus"></i></a>
                                         </h4>
 
