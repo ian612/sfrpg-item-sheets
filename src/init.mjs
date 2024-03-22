@@ -1,10 +1,22 @@
 import { preloadHandlebarsTemplates } from './module/templates.js';
 
 const MODULE_ID = 'sfrpg-item-sheets';
+const itemSizeArmorClassModifier = {
+    "fine": 8,
+    "diminutive": 4,
+    "tiny": 2,
+    "small": 1,
+    "medium": 0,
+    "large": 1,
+    "huge": 2,
+    "gargantuan": 4,
+    "colossal": 8
+};
 
 function EnhancedItemSheetMixin(SheetClass) {
+    const RollContext = game.sfrpg.rolls.RollContext;
+    console.log(RollContext);
     return class EnhancedItemSheetSFRPG extends SheetClass {
-        // write your class code as normal here
         constructor(...args) {
             super(...args);
 
@@ -47,6 +59,15 @@ function EnhancedItemSheetMixin(SheetClass) {
          * @return {string}
          */
         get template() {
+            const path = "systems/sfrpg/templates/items";
+            return `${path}/${this.item.type}.hbs`;
+        }
+
+        /**
+         * Return a dynamic reference to the HTML template path used to render this Item Sheet
+         * @return {string}
+         */
+        get template() {
             const path = "modules/sfrpg-item-sheets/dist/templates/items";
             return `${path}/${this.item.type}.hbs`;
         }
@@ -56,7 +77,7 @@ function EnhancedItemSheetMixin(SheetClass) {
          * Start with the base item data and extending with additional properties for rendering.
          */
         async getData() {
-            const data = super.getData();
+            const data = await super.getData();
             // Ensure derived data is included
             await this.item.processData();
 
