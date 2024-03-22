@@ -35,7 +35,7 @@
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
         {{!-- Description Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs" hideProperties=true}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs" hideProperties=true}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -49,10 +49,10 @@
                     <p class="notification warning">{{localize "SFRPG.ComingSoon"}}</p>
                 </div>
             </div>
-            
+
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-modifiers.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-modifiers.hbs"}}
     </section>
 </form>

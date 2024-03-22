@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
     {{!-- Item Sheet Header --}}
-    {{> "systems/sfrpg/templates/items/parts/item-header.hbs"}}
+    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-header.hbs"}}
 
     {{!-- Item Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
@@ -11,7 +11,7 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -49,14 +49,14 @@
                     </div>
 
                     {{!-- Special Materials Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-special-materials.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-special-materials.hbs"}}
                 </div>
             </div>
 
             {{!-- Physical Properties --}}
-            {{> "systems/sfrpg/templates/items/parts/physical-item-details.hbs"}}
+            {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/physical-item-details.hbs"}}
 
         </div>
-        
+
     </section>
 </form>

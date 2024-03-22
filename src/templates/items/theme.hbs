@@ -32,7 +32,7 @@
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
         {{!-- Description Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs" hideProperties=true}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs" hideProperties=true}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -51,7 +51,7 @@
                                 {{/each}}
                                 {{/select}}
                             </select>
-                            <input type="text" name="system.abilityMod.mod" value="{{itemData.abilityMod.mod}}" data-dtype="Number" />                    
+                            <input type="text" name="system.abilityMod.mod" value="{{itemData.abilityMod.mod}}" data-dtype="Number" />
                         </div>
                     </div>
 
@@ -71,6 +71,6 @@
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-modifiers.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-modifiers.hbs"}}
     </section>
 </form>

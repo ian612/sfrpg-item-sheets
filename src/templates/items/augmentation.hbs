@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
     {{!-- Item Sheet Header --}}
-    {{> "systems/sfrpg/templates/items/parts/item-header.hbs"}}
+    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-header.hbs"}}
 
     {{!-- Item Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
@@ -12,11 +12,11 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
-            
+
             {{!-- Details Tab Navigation --}}
             <nav class="sheet-subnavigation subtabs" data-group="subdetails">
                 <a class="item active" data-tab="properties">{{ localize "SFRPG.ItemSheet.Details.Tab.Properties" }}</a>
@@ -62,24 +62,24 @@
                             </div>
 
                             {{!-- Equipment Status --}}
-                            {{> "systems/sfrpg/templates/items/parts/item-status.hbs"}}
+                            {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-status.hbs"}}
 
                         </div>
                     </div>
 
                     {{!-- Physical Properties --}}
-                    {{> "systems/sfrpg/templates/items/parts/physical-item-details.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/physical-item-details.hbs"}}
 
                 </div>
 
                 {{!-- Usage and Action Tab --}}
                 <div class="tab usage" data-group="subdetails" data-tab="usage">
-                    
+
                     {{!-- Item Activation Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-activation.hbs" message="SFRPG.Items.Augmentation.Usage"}}
-                    
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-activation.hbs" message="SFRPG.Items.Augmentation.Usage"}}
+
                     {{!-- Item Action Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-action.hbs" message="SFRPG.Items.Augmentation.Action"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-action.hbs" message="SFRPG.Items.Augmentation.Action"}}
 
                 </div>
 
@@ -87,7 +87,7 @@
                 <div class="tab container" data-group="subdetails" data-tab="container">
 
                     {{!-- Container Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/container-details.hbs" message="SFRPG.Items.Equipment.ContainerTooltip"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/container-details.hbs" message="SFRPG.Items.Equipment.ContainerTooltip"}}
 
                 </div>
 
@@ -95,6 +95,6 @@
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-modifiers.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-modifiers.hbs"}}
     </section>
 </form>

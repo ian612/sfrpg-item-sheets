@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
     {{!-- Item Sheet Header --}}
-    {{> "systems/sfrpg/templates/items/parts/item-header.hbs"}}
+    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-header.hbs"}}
 
      {{!-- Item Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
@@ -14,7 +14,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -56,7 +56,7 @@
                     </div>
 
                     {{!-- Physical Properties --}}
-                    {{> "systems/sfrpg/templates/items/parts/physical-item-details.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/physical-item-details.hbs"}}
 
                 </div>
 
@@ -64,10 +64,10 @@
                 <div class="tab usage" data-group="subdetails" data-tab="usage">
 
                     {{!-- Item Activation Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-activation.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-activation.hbs"}}
 
                     {{!-- Item Action Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-action.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-action.hbs"}}
 
                 </div>
 
@@ -75,18 +75,18 @@
                 <div class="tab container" data-group="subdetails" data-tab="container">
 
                     {{!-- Capacity Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-capacity.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-capacity.hbs"}}
 
                     {{!-- Container Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/container-details.hbs" message="SFRPG.Items.Equipment.ContainerTooltip"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/container-details.hbs" message="SFRPG.Items.Equipment.ContainerTooltip"}}
 
                 </div>
-                
+
             </section>
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-modifiers.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-modifiers.hbs"}}
 
     </section>
 </form>

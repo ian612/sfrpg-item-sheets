@@ -38,7 +38,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -56,7 +56,7 @@
                 <div class="tab properties" data-group="subdetails" data-tab="properties">
 
                     {{!-- Common Component Data --}}
-                    {{> "systems/sfrpg/templates/items/parts/starship-component.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/starship-component.hbs"}}
 
                     {{!-- Weapon Properties --}}
                     <div class="bubble">
@@ -152,8 +152,8 @@
                     </div>
 
                     {{!-- Special Materials Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-special-materials.hbs"}}
-                
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-special-materials.hbs"}}
+
                 </div>
 
                 {{!-- Attack & Damage Tab --}}
@@ -164,7 +164,7 @@
                         <h3 class="bubble-header">{{localize "SFRPG.Items.Weapon.Attack"}}</h3>
 
                         <div class="bubble-info">
-                            
+
                             {{!-- Action Target --}}
                             <div class="form-group select" {{createTippy title="SFRPG.Items.Action.ActionTarget.Title" subtitle="SFRPG.Items.Action.ActionTarget.Tooltip"}}>
                                 <label>{{ localize "SFRPG.Items.Action.ActionTarget.Title" }}</label>
@@ -198,7 +198,7 @@
                                     <input type="text" name="system.attackBonus" value="{{itemData.attackBonus}}" />
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -211,7 +211,7 @@
 
                         <div class="bubble-info">
                             {{!-- Damage Formula --}}
-                            {{> "systems/sfrpg/templates/items/parts/damage-sections.hbs" starshipDamage=true}}
+                            {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/damage-sections.hbs" starshipDamage=true}}
                         </div>
                     </div>
 

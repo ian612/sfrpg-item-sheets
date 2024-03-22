@@ -14,7 +14,7 @@
                     <span data-tooltip="Item Status" class="item-status">{{itemStatus}}</span>
                 </div>
             </div>
-    
+
             {{!-- Item Summary --}}
             <ul class="summary flexrow">
                 {{#if category.enabled}}
@@ -26,7 +26,7 @@
                     <input type="text" name="system.source" value="{{itemData.source}}" placeholder="{{ localize "SFRPG.ItemSheet.Header.Source" }}"/>
                 </li>
             </ul>
-    
+
             {{!-- Header Attributes --}}
             <ul class="summary flexrow">
                 <li>
@@ -49,7 +49,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -167,24 +167,24 @@
                                     {{/if}}
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
 
                     {{!-- Descriptors Selector --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-descriptors.hbs"}}
-                
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-descriptors.hbs"}}
+
                 </div>
 
                 {{!-- Usage Tab --}}
                 <div class="tab usage" data-group="subdetails" data-tab="usage">
 
                     {{!-- Item Activation Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-activation.hbs" message="SFRPG.Items.Spell.Casting"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-activation.hbs" message="SFRPG.Items.Spell.Casting"}}
 
                     {{!-- Item Action Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-action.hbs" message="SFRPG.Items.Spell.Effects"}}
-                    
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-action.hbs" message="SFRPG.Items.Spell.Effects"}}
+
                 </div>
 
             </section>

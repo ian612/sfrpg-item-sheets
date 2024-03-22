@@ -33,7 +33,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -82,7 +82,7 @@
                                     <input type="text" name="system.arms.number" value="{{itemData.arms.number}}" data-dtype="Number"/>
                                 </div>
                             </div>
-                
+
                             <div class="form-group">
                                 <label>{{ localize "SFRPG.DroneSheet.Mod.Details.Arms.ArmType.Label" }}</label>
                                 <div class="form-fields">
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     {{!-- Other Effects --}}
                     <div class="bubble">
                         <h3 class="bubble-header">{{ localize "SFRPG.DroneSheet.Mod.Details.OtherEffects.Header" }}</h3>
@@ -169,10 +169,10 @@
                 <div class="tab usage" data-group="subdetails" data-tab="usage">
 
                     {{!-- Item Action Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-activation.hbs" message="SFRPG.Items.Action.TitleActivation"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-activation.hbs" message="SFRPG.Items.Action.TitleActivation"}}
 
                     {{!-- Item Action Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-action.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-action.hbs"}}
 
                 </div>
 
@@ -181,7 +181,7 @@
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-modifiers.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-modifiers.hbs"}}
 
     </section>
 </form>

@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
     {{!-- Item Sheet Header --}}
-    {{> "systems/sfrpg/templates/items/parts/item-header.hbs"}}
+    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-header.hbs"}}
 
     {{!-- Item Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
@@ -14,7 +14,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -36,7 +36,7 @@
                         <h3 class="bubble-header">{{ localize "SFRPG.ItemSheet.StarshipFrame.Details.HeaderSpecs" }}</h3>
 
                         <div class="bubble-info">
-                            
+
                             {{!-- Size --}}
                             <div class="form-group" data-tooltip="{{ localize "SFRPG.ItemSheet.StarshipFrame.Details.SizeTooltip" }}">
                                 <label>{{ localize "SFRPG.ItemSheet.StarshipFrame.Details.Size" }}</label>
@@ -96,7 +96,7 @@
                                     <input type="text" name="system.cost" value="{{itemData.cost}}" data-dtype="Number" />
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -129,7 +129,7 @@
                                     <input type="text" name="system.damageThreshold.base" value="{{itemData.damageThreshold.base}}" data-dtype="Number" />
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -143,7 +143,7 @@
                         <h3 class="bubble-header">{{ localize "SFRPG.ItemSheet.StarshipFrame.Details.WeaponMounts" }}</h3>
 
                         <div class="bubble-info">
-                            
+
                             {{!-- Forward Arc --}}
                             <div class="form-group input-select-select-select" data-tooltip="{{ localize "SFRPG.ItemSheet.StarshipFrame.Details.WeaponArcTooltip" }}">
                                 <label>{{ localize "SFRPG.ItemSheet.StarshipFrame.Details.WeaponArcForward" }}</label>
@@ -218,7 +218,7 @@
                                     <input type="text" name="system.weaponMounts.turret.spinalSlots" value="{{itemData.weaponMounts.turret.spinalSlots}}" data-dtype="Number" placeholder="0" />
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -229,7 +229,7 @@
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-modifiers.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-modifiers.hbs"}}
 
     </section>
 </form>

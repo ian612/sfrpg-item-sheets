@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
     {{!-- Item Sheet Header --}}
-    {{> "systems/sfrpg/templates/items/parts/item-header.hbs"}}
+    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-header.hbs"}}
 
      {{!-- Item Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
@@ -12,7 +12,7 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-tab="details" data-group="primary">
@@ -48,7 +48,7 @@
                     </div>
 
                     {{!-- Physical Item Details --}}
-                    {{> "systems/sfrpg/templates/items/parts/physical-item-details.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/physical-item-details.hbs"}}
 
                 </div>
 
@@ -56,10 +56,10 @@
                 <div class="tab container" data-group="subdetails" data-tab="container">
 
                     {{!-- Capacity and Usage --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-capacity.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-capacity.hbs"}}
 
                     {{!-- Container Details --}}
-                    {{> "systems/sfrpg/templates/items/parts/container-details.hbs" message="SFRPG.ItemSheet.Weapons.ContainerTooltip"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/container-details.hbs" message="SFRPG.ItemSheet.Weapons.ContainerTooltip"}}
 
                 </div>
 
@@ -67,7 +67,7 @@
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-modifiers.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-modifiers.hbs"}}
 
     </section>
 </form>

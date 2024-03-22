@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
     {{!-- Item Sheet Header --}}
-    {{> "systems/sfrpg/templates/items/parts/item-header.hbs"}}
+    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-header.hbs"}}
 
     {{!-- Item Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
@@ -14,21 +14,21 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
 
             {{!-- Equipment Status --}}
-            {{> "systems/sfrpg/templates/items/parts/item-status.hbs"}}
+            {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-status.hbs"}}
 
             {{!-- Physical Properties --}}
-            {{> "systems/sfrpg/templates/items/parts/physical-item-details.hbs"}}
-        
+            {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/physical-item-details.hbs"}}
+
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-modifiers.hbs"}}
-        
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-modifiers.hbs"}}
+
     </section>
 </form>

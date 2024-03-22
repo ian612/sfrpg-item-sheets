@@ -39,7 +39,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-description.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-description.hbs"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -95,7 +95,7 @@
                     </div>
 
                     {{!-- Descriptors Selector --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-descriptors.hbs"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-descriptors.hbs"}}
 
                 </div>
 
@@ -103,7 +103,7 @@
                 <div class="tab usage" data-group="subdetails" data-tab="usage">
 
                     {{!-- Item Activation Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-activation.hbs" message="SFRPG.Items.Feat.FeatureUsage"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-activation.hbs" message="SFRPG.Items.Feat.FeatureUsage"}}
 
                     {{!-- Recharge Requirement --}}
                     {{#if itemData.activation.type}}
@@ -127,15 +127,15 @@
                     {{/if}}
 
                     {{!-- Item Action Template --}}
-                    {{> "systems/sfrpg/templates/items/parts/item-action.hbs" message="SFRPG.Items.Feat.FeatureAttack"}}
+                    {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-action.hbs" message="SFRPG.Items.Feat.FeatureAttack"}}
 
                 </div>
-            
+
             </section>
 
         </div>
 
         {{!-- Modifiers Tab --}}
-        {{> "systems/sfrpg/templates/items/parts/item-modifiers.hbs"}}
+        {{> "modules/sfrpg-item-sheets/dist/templates/items/parts/item-modifiers.hbs"}}
     </section>
 </form>
