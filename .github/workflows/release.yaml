@@ -1,0 +1,77 @@
+# release.yaml modified based on the SR5 foundryvtt release.yml file
+name: Release Creation
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Update settings.json url
+      uses: jossef/action-set-json-field@v2.1
+      with:
+        file: system.json
+        field: url
+        value: https://github.com/${{github.repository}}
+    - name: Update settings.json bugs
+      uses: jossef/action-set-json-field@v2.1
+      with:
+        file: system.json
+        field: bugs
+        value: https://github.com/${{github.repository}}/issues
+    - name: Update settings.json manifest
+      uses: jossef/action-set-json-field@v2.1
+      with:
+        file: system.json
+        field: manifest
+        value: https://github.com/${{github.repository}}/releases/latest/download/system.json
+    - name: Update settings.json version
+      uses: jossef/action-set-json-field@v2.1
+      with:
+        file: system.json
+        field: version
+        value: ${{github.event.release.tag_name}}
+    - name: Update settings.json download
+      uses: jossef/action-set-json-field@v2.1
+      with:
+        file: system.json
+        field: download
+        value: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/shadowrun5e.zip
+
+    - run: |
+          npm ci
+          gulp build
+          zip -r ./shadowrun5e.zip system.json template.json LICENSE README.md README-DEV.md dist/ packs/
+
+    - name: Update Release with Files
+      id: create_version_release
+      uses: ncipollo/release-action@v1
+      with:
+        makeLatest: false # Must be false, to allow test releases using this workflow.
+        allowUpdates: true # Must be true, to allow updating existing releases
+        name: ${{ github.event.release.name }}
+        draft: false
+        prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: './system.json, ./shadowrun5e.zip'
+        tag: ${{ github.event.release.tag_name }}
+        body: ${{ github.event.release.body }}
+
+    - name: Prepare Deploy Release
+      id: system_properties
+      uses: ActionsTools/read-json-action@main
+      with:
+            file_path: "system.json"
+
+    #- name: Deploy Release
+    #  uses: fjogeleit/http-request-action@v1
+    #  with:
+    #    url: 'https://api.foundryvtt.com/_api/packages/release_version'
+    #    method: 'POST'
+    #    contentType: 'application/json'
+    #    customHeaders: '{"Authorization": "${{ secrets.FVTT_PACKAGE_RELEASE_TOKEN }}"}'
+    #    data: '{"id": "shadowrun5e","release":{"version":"v${{steps.system_properties.outputs.version}}","manifest":"https://github.com/SR5-FoundryVTT/SR5-FoundryVTT/releases/latest/download/system.json","notes":"https://github.com/smilligan93/SR5-FoundryVTT/releases/tag/${{steps.system_properties.outputs.version}}","compatibility":{"minimum":"11.315","verified":"11","maximum":"11"}}}'
