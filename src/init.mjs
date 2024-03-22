@@ -15,7 +15,6 @@ const itemSizeArmorClassModifier = {
 
 function EnhancedItemSheetMixin(SheetClass) {
     const RollContext = game.sfrpg.rolls.RollContext;
-    console.log(RollContext);
     return class EnhancedItemSheetSFRPG extends SheetClass {
         constructor(...args) {
             super(...args);
