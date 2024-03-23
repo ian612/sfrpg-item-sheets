@@ -17,7 +17,7 @@
       }
     ]
   },
-  "description": "Designate items as modifications that can be installed into other items.",
+  "description": "Adds an enhanced details page to SFRPG Item Sheets that improved readability.",
   "authors": [
     {
       "name": "Ian Bennett",
