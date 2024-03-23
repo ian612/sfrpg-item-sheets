@@ -28,7 +28,7 @@ jobs:
         with:
           file: module.json
           field: manifest
-          value: https://github.com/${{github.repository}}/releases/latest/download/system.json
+          value: https://github.com/${{github.repository}}/releases/latest/download/module.json
       - name: Update settings.json version
         uses: jossef/action-set-json-field@v2.1
         with:
