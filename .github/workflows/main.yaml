@@ -1,5 +1,4 @@
-# This was copied from https://github.com/esheyw/pf2e-macro-helper-library/blob/fd73507c1496d3293cc73e4b1540260da6d7083a/.github/workflows/main.yaml
-# It probably needs some work before I actually use it for anything
+# Much of this code yoinked and modified from https://github.com/SR5-FoundryVTT/SR5-FoundryVTT
 name: Release Module
 
 on:
@@ -51,6 +50,7 @@ jobs:
         id: create_version_release
         uses: ncipollo/release-action@v1
         with:
+          makeLatest: false
           allowUpdates: true # Set this to false if you want to prevent updating existing releases
           name: ${{ github.event.release.name }}
           draft: false
