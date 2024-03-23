@@ -1,6 +1,6 @@
 # This was copied from https://github.com/esheyw/pf2e-macro-helper-library/blob/fd73507c1496d3293cc73e4b1540260da6d7083a/.github/workflows/main.yaml
 # It probably needs some work before I actually use it for anything
-name: Release Creation
+name: Release Module
 
 on:
   release:
@@ -21,32 +21,32 @@ jobs:
       - name: Update settings.json url
         uses: jossef/action-set-json-field@v2.1
         with:
-          file: system.json
+          file: module.json
           field: url
           value: https://github.com/${{github.repository}}
       - name: Update settings.json manifest
         uses: jossef/action-set-json-field@v2.1
         with:
-          file: system.json
+          file: module.json
           field: manifest
           value: https://github.com/${{github.repository}}/releases/latest/download/system.json
       - name: Update settings.json version
         uses: jossef/action-set-json-field@v2.1
         with:
-          file: system.json
+          file: module.json
           field: version
           value: ${{github.event.release.tag_name}}
       - name: Update settings.json download
         uses: jossef/action-set-json-field@v2.1
         with:
-          file: system.json
+          file: module.json
           field: download
-          value: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/shadowrun5e.zip
+          value: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.zip
 
       # Create a zip file with all files required by the module to add to the release
       - run: zip -r ./module.zip module.json LICENSE README.md dist
 
-      # Create a release for this specific version
+      # Update the release with the correct files we just generated
       - name: Update Release with Files
         id: create_version_release
         uses: ncipollo/release-action@v1
