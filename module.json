@@ -1,10 +1,10 @@
 {
   "id": "sfrpg-item-sheets",
   "title": "SFRPG Enhanced Item Sheets",
-  "version": "1.0",
+  "version": "1.0.1",
   "compatibility": {
-    "minimum": "11",
-    "verified": "11"
+    "minimum": "12",
+    "verified": "12"
   },
   "relationships": {
     "systems": [
@@ -12,8 +12,8 @@
         "id": "sfrpg",
         "type": "system",
         "compatibility": {
-          "minimum": "0.25",
-          "maximum": "0.25.10"
+          "minimum": "0.26",
+          "maximum": "0.26"
         }
       }
     ]
