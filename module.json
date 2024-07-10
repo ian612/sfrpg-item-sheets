@@ -12,8 +12,8 @@
         "id": "sfrpg",
         "type": "system",
         "compatibility": {
-          "minimum": "0.26",
-          "maximum": "0.26"
+          "minimum": "0.26.0",
+          "maximum": "0.26.10"
         }
       }
     ]
