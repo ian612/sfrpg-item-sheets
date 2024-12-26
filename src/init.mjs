@@ -1,4 +1,5 @@
 import { preloadHandlebarsTemplates } from './module/templates.js';
+// import { CheckEnricher } from './module/bugfix-code/system/enrichers/check.js';
 
 const MODULE_ID = 'sfrpg-item-sheets';
 const itemSizeArmorClassModifier = {
@@ -12,6 +13,17 @@ const itemSizeArmorClassModifier = {
     "gargantuan": 4,
     "colossal": 8
 };
+
+Hooks.once("init", () => {
+    preloadHandlebarsTemplates()
+    Items.registerSheet(MODULE_ID, EnhancedItemSheetMixin(game.sfrpg.applications.ItemSheetSFRPG), {makeDefault: true})
+    const test = new CheckEnricher();
+    console.log("------------------------------------------------------------------------------------------------------------");
+    console.log(CONFIG);
+    console.log(test);
+    CONFIG.TextEditor.enrichers[2] = new CheckEnricher();
+    // CONFIG.TextEditor.enrichers.push(new BrowserEnricher(), new IconEnricher(), new CheckEnricher(), new TemplateEnricher());
+})
 
 function EnhancedItemSheetMixin(SheetClass) {
     const RollContext = game.sfrpg.rolls.RollContext;
@@ -421,7 +433,457 @@ function EnhancedItemSheetMixin(SheetClass) {
     }
 }
 
-Hooks.once("init", () => {
-    preloadHandlebarsTemplates()
-    Items.registerSheet(MODULE_ID, EnhancedItemSheetMixin(game.sfrpg.applications.ItemSheetSFRPG), {makeDefault: true})
-})
+class CheckNameHelper {
+    /**
+     * Take the full name for a check, and return the 3-letter identifier
+     * @param {String} fullName The full name for the check, such as "life-science" or "acrobatics"
+     * @returns {String} The 3-letter name, if it exists, otherwise the inputted full name
+     */
+    static shortFormName(fullName) {
+        return {
+            "acrobatics": "acr",
+            "athletics": "ath",
+            "bluff": "blu",
+            "computers": "com",
+            "culture": "cul",
+            "diplomacy":"dip",
+            "disguise": "dis",
+            "engineering":"eng",
+            "intimidate": "int",
+            "life-science":"lsc",
+            "medicine": "med",
+            "mysticism": "mys",
+            "perception": "per",
+            "profession": "pro",
+            "physical-science":"phs",
+            "piloting": "pil",
+            "sense-motive":"sen",
+            "sleight-of-hand":"sle",
+            "stealth": "ste",
+            "survival": "sur",
+
+            "fortitude": "fort",
+            "reflex": "reflex",
+            "will": "will",
+
+            "strength": "str",
+            "dexterity": "dex",
+            "constitution": "con",
+            "intelligence": "int",
+            "wisdom": "wis",
+            "charisma": "cha",
+
+            "caster-level": "caster-level"
+        }[fullName] || fullName;
+    }
+
+    /**
+     * Take the 3-letter identifier for a check, and return the full name
+     * @param {String} threeLetter The 3-letter identifier  for the check, such as "lsc" or "acr"
+     * @returns {String} The full name, if it exists, otherwise the inputted 3-letter name
+     */
+    static longFormName(threeLetter) {
+        return {
+            "acr": "acrobatics",
+            "ath": "athletics",
+            "blu": "bluff",
+            "com":"computers",
+            "cul": "culture",
+            "dip": "diplomacy",
+            "dis": "disguise",
+            "eng": "engineering",
+            "int": "intimidate",
+            "lsc": "life-science",
+            "med": "medicine",
+            "mys": "mysticism",
+            "per": "perception",
+            "pro": "profession",
+            "phs": "physical-science",
+            "pil": "piloting",
+            "sen": "sense-motive",
+            "sle": "sleight-of-hand",
+            "ste": "stealth",
+            "sur": "survival",
+
+            "fort": "fortitude",
+            "reflex": "reflex",
+            "will": "will",
+
+            "caster-level": "caster-level"
+        }[threeLetter] || threeLetter;
+    }
+
+    /**
+     * Same as longformName, but a seperate function to stop namespace collision between the "int" of intimidate and intelligence
+     * @see longFormName
+     */
+    static longFormNameAbilities(threeLetter) {
+        return {
+            "str": "strength",
+            "dex": "dexterity",
+            "con": "constitution",
+            "int": "intelligence",
+            "wis": "wisdom",
+            "cha": "charisma"
+        }[threeLetter] || threeLetter;
+    }
+}
+
+class BaseEnricher {
+
+    /** @type {CustomEnricher} */
+    constructor() {
+        if (this.constructor === BaseEnricher) throw new Error(
+            "The BaseEnricher class is an abstract class and may not be instantiated."
+        );
+        this.pattern = this.regex;
+        this.enricher = this.enricherFunc.bind(this);
+    }
+
+    /** --------
+    |           |
+    |  Getters  |
+    |           |
+    ----------*/
+
+    /**
+     * The RegExp to capture the text.
+     * @returns {RegExp}
+     */
+    get regex() {
+        return new RegExp(`(@${this.enricherType})(\\[[^\\]]+)](?:{([^}]+)})?`, "gm");
+    }
+
+    /**
+     * The type of custom enricher, i.e the word following the @
+     * @returns {String}
+    */
+    get enricherType() {
+        throw new Error("This method must be implemented on subclasses of BaseEnricher.");
+    }
+
+    /**
+     * Valid options for the type argument
+     * @returns {String[]}
+     */
+    get validTypes() {
+        throw new Error("This method must be implemented on subclasses of BaseEnricher.");
+    }
+
+    /**
+     * An object of FA icons to be used in the element
+     * @returns {Object}
+     */
+    get icons() {
+        throw new Error("This method must be implemented on subclasses of BaseEnricher.");
+    }
+
+    /** -------------------
+    |                      |
+    |  Element Generation  |
+    |                      |
+    ----------------------*/
+
+    /**
+     * Transform the Regex match array into an enriched element, performing validation.
+     * @callback EnricherFunction
+     * @param {RegExp} match A Regex match array from the inputted text
+     * @param {Object} options
+     * @returns {HTMLElement} The enriched element
+     */
+    enricherFunc(match, options) {
+        this.match = match;
+
+        if (this.match[3]) this.name = this.match[3];
+        else this.name = undefined;
+
+        this.parseArgs();
+
+        // Early return an error element if invalid
+        if (!this.isValid()) return this.element;
+
+        this.validateName();
+
+        this.element = this.createElement();
+
+        return this.element;
+    }
+
+    /**
+     * Transform the args in the orginal text to an object
+     */
+    parseArgs() {
+        // Split each argument from the square brackets
+        const args = this.match[2].split("|");
+
+        this.args = args.reduce((obj, i) => {
+            // Split each arg into a key and a value
+            // Matches a colon with a letter before, and either a JSON or character after.
+            // Set up as to not split colons in JSONs
+            const split = i.match(/(\w*):({.*}?|.+)/);
+            if (split?.length > 0) obj[split[1]] = split[2];
+
+            return obj;
+        }, {});
+    }
+
+    /**
+     * Checks if there is a type argument, and that it is valid for the enricher's type.
+     * Sets this.element if invalid for an early return.
+     * @returns {Boolean}
+     */
+    isValid() {
+        if (!this.args.type || !this.validTypes.includes(this.args.type)) {
+            return this._failValidation("Type");
+        }
+
+        return true;
+    }
+
+    /**
+     * Create an error element after isValid() fails
+     * @param {String} failedArg The argument that failed validation, to be used in the error element
+     * @returns {false}
+     */
+    _failValidation(failedArg) {
+        const strong = document.createElement("strong");
+        strong.innerText = `${this.enricherType} parsing failed! ${failedArg} is invalid.`;
+        this.element = strong;
+        return false;
+    }
+
+    /**
+     * Sets a default name if none was given
+     */
+    validateName() {
+        this.name ||= `${this.args.type.capitalize()} ${this.enricherType}`;
+    }
+
+    /**
+     * Create a HTML element and affix some data.
+     * Can be called in subclasses by assigning the super to a local variable.
+     * @returns {HTMLAnchorElement}
+     */
+    createElement() {
+        let a = document.createElement("a");
+
+        a.dataset.action = this.enricherType;
+        a.dataset.type = this.args.type;
+
+        a.classList.add("enriched-link");
+        a.draggable = false;
+
+        a.innerText = this.name;
+
+        if (this.#_hasRepost) a = this.addRepost(a);
+
+        return a;
+    }
+
+    /** -------
+    |          |
+    |  Repost  |
+    |          |
+    -----------*/
+
+    /**
+     * Should this enricher have a repost button appended to created elements?
+     * Create both a publicly accessible static variable and an internal instance one.
+     * @type {Boolean}
+     */
+    static hasRepost = false;
+    /** @type {Boolean} */
+    #_hasRepost = this.constructor.hasRepost;
+
+    /**
+     * Take an anchor element and append a repost button
+     * @param {HTMLAnchorElement} a The original anchor
+     * @returns The inputted Anchor, with a repost button appended
+     */
+    addRepost(a) {
+        const repost = document.createElement("i");
+        repost.classList.add("fas", "fa-comment-alt", "repost");
+        repost.dataset.tooltip = "SFRPG.Enrichers.SendToChat";
+
+        a.append(repost);
+
+        return a;
+    }
+
+    /**
+     * Handle repost button click, sending a chat message of the current target to chat.
+     * @param {Event} event
+     * @returns Create a chat message
+     */
+    static repostListener(event) {
+        event.stopPropagation();
+
+        return ChatMessage.create({content: event.currentTarget.parentElement.outerHTML});
+    }
+
+    /** ---------
+    |            |
+    |  Listener  |
+    |            |
+    ------------*/
+
+    /**
+     * Whether the enricher has an event listener.
+     * @type {Boolean}
+     */
+    static hasListener = false;
+
+    /**
+     * A callback function to run when the element is clicked.
+     * @param {Event} event The DOM event that triggers the listener
+     * @returns {void}
+     */
+    static listener(event) {}
+
+    /**
+     * Add Event listeners to the DOM body at startup.
+     */
+    static addListeners() {
+        const body = $("body");
+        body.on("click", `i.repost`, this.repostListener);
+        for (const [action, cls] of Object.entries(CONFIG.SFRPG.enricherTypes)) {
+            if (cls.hasListener) body.on("click", `a[data-action="${action}"]`, cls.listener);
+        }
+    }
+}
+
+class CheckEnricher extends BaseEnricher {
+    // @Check[type:athletics]
+    // @Check[type:life-science]
+    // @Check[type:reflex]
+    constructor() {
+        super();
+    }
+
+    /** @inheritdoc */
+    get enricherType() {
+        return "Check";
+    }
+
+    /** @inheritdoc */
+    get validTypes() {
+        return [
+            ...Object.keys(CONFIG.SFRPG.skills),
+            ...Object.keys(CONFIG.SFRPG.saves),
+            ...Object.keys(CONFIG.SFRPG.abilities),
+            "caster-level"
+        ];
+    }
+
+    /** @inheritdoc */
+    get icons() {
+        return {
+            "acrobatics": "fa-person-walking",
+            "athletics": "fa-dumbbell",
+            "bluff": "fa-comment",
+            "computers": "fa-computer",
+            "culture": "fa-flag",
+            "diplomacy": "fa-handshake",
+            "disguise": "fa-mask",
+            "engineering": "fa-gear",
+            "intimidate": "fa-face-angry",
+            "life-science": "fa-dna",
+            "medicine": "fa-syringe",
+            "mysticism": "fa-hand-sparkles",
+            "perception": "fa-magnifying-glass",
+            "profession": "fa-user-tie",
+            "physical-science": "fa-flask",
+            "piloting": "fa-plane",
+            "sense-motive": "fa-person-circle-question",
+            "sleight-of-hand": "fa-hands",
+            "stealth": "fa-moon",
+            "survival": "fa-campground",
+
+            "fortitude": "fa-shield-heart",
+            "reflex": "fa-person-running",
+            "will": "fa-brain",
+
+            "strength": "fa-weight-hanging",
+            "dexterity": "fa-feather-pointed",
+            "constitution": "fa-heart-pulse",
+            "intelligence": "fa-glasses",
+            "wisdom": "fa-mountain-sun",
+            "charisma": "fa-people-arrows",
+
+            "caster-level": "fa-wand-magic-sparkles"
+        };
+    }
+
+    get checkType() {
+        const shortName = CheckNameHelper.shortFormName(this.args.type);
+        const C = CONFIG.SFRPG;
+
+        if (shortName in C.skills) return "skill";
+        else if (shortName in C.saves) return "save";
+        else if (shortName in C.abilities) return "ability";
+        else return null;
+    }
+
+    get localizedType() {
+        const C = CONFIG.SFRPG;
+        const type = CheckNameHelper.shortFormName(this.args.type);
+
+        switch (this.checkType) {
+            case "skill": return C.skills[type];
+            case "save": return C.saves[type];
+            case "ability": return C.abilities[type];
+            default: return "";
+        }
+    }
+
+    /**
+     * @override to check using the 3-letter identifier for the type against the valid types (which are 3 letter identifiers).
+     * Inputted types are full names.
+     */
+    isValid() {
+        if (!this.args.type || !this.validTypes.includes(CheckNameHelper.shortFormName(this.args.type))) {
+            return this._failValidation("Type");
+        }
+
+        return true;
+    }
+
+    validateName() {
+        const i18nPath = this.checkType === "save" ? "SFRPG.Save" : "SFRPG.Check";
+        const localizedCheck = game.i18n.localize(i18nPath);
+
+        this.name ||= `${this.localizedType} ${localizedCheck}`;
+    }
+
+    /**
+     * @extends BaseEnricher
+     * @returns {HTMLAnchorElement} */
+    createElement() {
+        const a = super.createElement();
+
+        if (this.args.dc) a.dataset.dc = parseInt(this.args.dc);
+        const iconSlug = (this.checkType === "ability") ? CheckNameHelper.longFormNameAbilities(this.args.type) : CheckNameHelper.longFormName(this.args.type);
+
+        a.innerHTML = `<i class="fas ${this.icons[iconSlug]}"></i>${a.innerHTML}`;
+
+        return a;
+
+    }
+
+    static hasRepost = true;
+    static hasListener = true;
+
+    static listener(event) {
+        const data = event.currentTarget.dataset;
+
+        const actor = _token?.actor ?? game.user?.character;
+        if (!actor) return ui.notifications.error("You must have a token or an actor selected.");
+        const id = CheckNameHelper.shortFormName(data.type);
+
+        if      (id in CONFIG.SFRPG.skills)    actor.rollSkill(id, { event });
+        else if (id in CONFIG.SFRPG.saves)     actor.rollSave(id, { event });
+        else if (id in CONFIG.SFRPG.abilities) actor.rollAbility(id, { event });
+
+    }
+
+}
