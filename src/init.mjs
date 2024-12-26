@@ -17,12 +17,23 @@ const itemSizeArmorClassModifier = {
 Hooks.once("init", () => {
     preloadHandlebarsTemplates()
     Items.registerSheet(MODULE_ID, EnhancedItemSheetMixin(game.sfrpg.applications.ItemSheetSFRPG), {makeDefault: true})
-    const test = new CheckEnricher();
-    console.log("------------------------------------------------------------------------------------------------------------");
-    console.log(CONFIG);
-    console.log(test);
-    CONFIG.TextEditor.enrichers[2] = new CheckEnricher();
-    // CONFIG.TextEditor.enrichers.push(new BrowserEnricher(), new IconEnricher(), new CheckEnricher(), new TemplateEnricher());
+
+    // Hotfix for inline check bug
+    // This is really hacky and won't be needed in SFRPG version 27, which includes this bugfix in a more stable way
+    // That's okay because this module is also deprecated in SFRPG version 27, so it won't matter, really
+    game.settings.register("sfrpg-item-sheets", "enable-inline-check-bugfix", {
+        name: "SFRPGItemSheets.Settings.InlineCheckBugfixName",
+        hint: "SFRPGItemSheets.Settings.InlineCheckBugfixHint",
+        scope: "world",
+        config: true,
+        default: true,
+        type: Boolean,
+        requiresReload: true
+    });
+
+    if (game.settings.get("sfrpg-item-sheets", "enable-inline-check-bugfix")) {
+        CONFIG.TextEditor.enrichers[2] = new CheckEnricher();
+    }
 })
 
 function EnhancedItemSheetMixin(SheetClass) {
