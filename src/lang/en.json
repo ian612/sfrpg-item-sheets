@@ -116,6 +116,10 @@
             },
             "RangeInformation": "Range Information"
         },
+        "Settings": {
+            "InlineCheckBugfixName": "Enable Bugfix for Inline Skill Checks",
+            "InlineCheckBugfixHint": "Checking this setting will enable a small bugfix for inline checks in SFRPG system version 26"
+        },
         "SheetLabel": "Enhanced Item Sheet"
     }
 }
